@@ -1,7 +1,7 @@
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import React from "react";
 import UserTable from "@/components/Tables/UserTable";
-
+import Dashboard from '@/components/dashboard_home/dashboard'
 export default function Home(data: any) {
 
 
@@ -9,7 +9,8 @@ export default function Home(data: any) {
     <>
       <DefaultLayout>
         {/* {/* <ECommerce /> */}
-        <UserTable />
+        <Dashboard />
+        {/* <UserTable /> */}
       </DefaultLayout>
     </>
   );

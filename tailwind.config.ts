@@ -20,6 +20,7 @@ const config: Config = {
     },
     extend: {
       colors: {
+        buttonGpt:"#10a37f",
         current: "currentColor",
         transparent: "transparent",
         white: "#FFFFFF",
