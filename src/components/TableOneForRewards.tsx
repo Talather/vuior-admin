@@ -381,6 +381,7 @@ interface PaymentDoc {
   billDueDate:any;
   billDetails:any;
   userDetails:any;
+  billName:any;
 }
 
 // Define the props for the component
