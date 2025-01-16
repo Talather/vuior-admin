@@ -185,11 +185,11 @@ const PaymentsHistory = () => {
     // <ScrollLayout title="Pending Bills Management">
       <div className="mt-6 bg-white p-5 rounded-xl shadow">
         <h3 className="text-center text-2xl font-semibold text-gray-800 md:text-4xl mb-6">
-          Pending Bills
+          Pending Transactions 
         </h3>
 
         {loading ? (
-          <p className="text-lg text-gray-600 text-center">Loading bills...</p>
+          <p className="text-lg text-gray-600 text-center">Loading Transactions...</p>
         ) : error ? (
           <p className="text-lg text-red-500 text-center">{error}</p>
         ) : pendingBills.length > 0 ? (
