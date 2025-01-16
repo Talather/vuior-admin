@@ -30,7 +30,7 @@ const BarChartCard = () => {
     >
       {/* Title */}
       <div style={{ marginBottom: "10px", fontSize: "20px", fontWeight: "bold" }}>
-        Total Rewards Distributed
+        Total Credits Distributed
       </div>
 
       {/* Subtitle */}

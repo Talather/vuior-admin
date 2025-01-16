@@ -1,0 +1,12 @@
+.topBar {
+  align-items: center;
+  border: 1px solid var(--border-color);
+  display: flex;
+  height: 80px;
+  padding: 0 50px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+}

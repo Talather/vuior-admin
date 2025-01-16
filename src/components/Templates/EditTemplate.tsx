@@ -57,7 +57,7 @@ const EditTemplate: React.FC<EditTemplateProps> = ({ id }) => {
 
     useEffect(() => {
         fetchTemplateData()
-    }, [id ])
+    }, [id,fetchTemplateData ])
 
     useEffect(() => {
         if (state.success) {

@@ -25,7 +25,7 @@ export default function SignInWithPassword() {
   return (
     <div className="w-full">
       <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
-        Sign In to CV-Lite Admin Panel
+        Sign In Vuior Admin Panel
       </h2>
       <form onSubmit={handleSubmit}>
         {error && (

@@ -3,7 +3,7 @@ import { AuthProvider } from "@/context/AuthContext";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "CV-LITE",
+  title: "Viour",
   description: "An AI Powered Resume",
 };
 

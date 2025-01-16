@@ -1,0 +1,29 @@
+.topActions {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.filterWrapper {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.filterWrapper label {
+  min-width: 60px;
+}
+
+.searchInput {
+  width: 170px;
+}
+
+.createLink,
+.shareLink {
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius-small);
+  color: var(--primary-foreground);
+  padding: 4px 15px;
+}
