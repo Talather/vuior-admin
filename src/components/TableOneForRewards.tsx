@@ -227,30 +227,172 @@
 
 
 
-import React from 'react'
+// import React from 'react'
+
+// // Define the type for a single payment document
+// interface PaymentDoc {
+//   amount: number
+//   date: string // Use string to handle formatted date directly
+//   savings: number
+//   status: string
+//   type: string
+//   userId: string
+//   billIds?: any
+//   creditApplied?:number
+// }
+
+// // Define the props for the component
+// interface TablePaymentsProps {
+//   paymentDocs: PaymentDoc[]
+// }
+
+// const TablePayments: React.FC<TablePaymentsProps> = ({ paymentDocs }) => {
+//   console.log('Payment Data:', paymentDocs)
+
+//   return (
+//     <div className='rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card'>
+//       <h4 className='mb-10 font-bold text-body-2xlg text-dark dark:text-white'>
+//         Payment History
+//       </h4>
+
+//       {paymentDocs.length > 0 ? (
+//         <div className='flex flex-col'>
+//           {/* Table Headers */}
+//           <div className='grid grid-cols-6 text-button-gpt'>
+//             <div className='px-2 pb-3.5 text-center'>
+//               <h5 className='text-sm font-medium uppercase xsm:text-base'>
+//                 Date
+//               </h5>
+//             </div>
+//             <div className='px-2 pb-3.5 text-center'>
+//               <h5 className='text-sm font-medium uppercase xsm:text-base'>
+//                 Amount
+//               </h5>
+//             </div>
+//             <div className='px-2 pb-3.5 text-center'>
+//               <h5 className='text-sm font-medium uppercase xsm:text-base'>
+//                 Savings
+//               </h5>
+//             </div>
+//             <div className='px-2 pb-3.5 text-center'>
+//               <h5 className='text-sm font-medium uppercase xsm:text-base'>
+//                 Type
+//               </h5>
+//             </div>
+//             <div className='px-2 pb-3.5 text-center'>
+//               <h5 className='text-sm font-medium uppercase xsm:text-base'>
+//                 Status
+//               </h5>
+//             </div>
+//             <div className='px-2 pb-3.5 text-center'>
+//               <h5 className='text-sm font-medium uppercase xsm:text-base'>
+//                 User ID
+//               </h5>
+//             </div>
+//           </div>
+
+//           {/* Table Rows */}
+//           {paymentDocs.map((payment, key) => (
+//             <div
+//               className={`grid grid-cols-6 ${
+//                 key === paymentDocs.length - 1
+//                   ? ''
+//                   : 'border-b border-stroke dark:border-dark-3'
+//               }`}
+//               key={key}
+//             >
+//               {/* Date */}
+//               <div className='flex items-center justify-center px-2 py-4'>
+//                 <p className='font-medium text-dark dark:text-white'>
+//                   {payment.date}
+//                 </p>
+//               </div>
+//               {/* Amount */}
+//               <div className='flex items-center justify-center px-2 py-4'>
+//                 <p className='font-medium text-dark dark:text-white'>
+//                   ${payment?.amount || ''}
+//                 </p>
+//               </div>
+//               {/* Savings */}
+//               <div className='flex items-center justify-center px-2 py-4'>
+//                 <p className='font-medium text-dark dark:text-white'>
+//                   {isNaN(payment.savings)
+//                     ? 'N/A'
+//                     : `$${payment?.savings?.toFixed(2)}`}
+//                 </p>
+//               </div>
+//               {/* Type */}
+//               <div className='flex items-center justify-center px-2 py-4'>
+//                 <p className='font-medium text-dark dark:text-white'>
+//                   {payment?.type}
+//                 </p>
+//               </div>
+//               {/* Status */}
+//               <div className='flex items-center justify-center px-2 py-4'>
+//                 <p
+//                   className={`font-medium ${
+//                     payment.status === 'Completed'
+//                       ? 'text-green-600'
+//                       : 'text-yellow-500'
+//                   }`}
+//                 >
+//                   {payment?.status}
+//                 </p>
+//               </div>
+//               {/* User ID */}
+//               <div className='flex items-center justify-center px-2 py-4'>
+//                 <p className='font-medium text-dark dark:text-white'>
+//                   {truncateString(payment?.userId, 15)}
+//                 </p>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       ) : (
+//         <p className='text-center text-black dark:text-white'>
+//           No payment history available.
+//         </p>
+//       )}
+//     </div>
+//   )
+// }
+
+// export default TablePayments
+
+// function truncateString (str: string, maxLength: number) {
+//   return str.length > maxLength ? str.slice(0, maxLength) + '...' : str
+// }
+
+import React from 'react';
 
 // Define the type for a single payment document
 interface PaymentDoc {
-  amount: number
-  date: string // Use string to handle formatted date directly
-  savings: number
-  status: string
-  type: string
-  userId: string
-  billIds?: any
-  creditApplied?:number
+  id:any;
+
+  amount: number;
+  date: string; // Use string to handle formatted date directly
+  savings: number;
+  status: string;
+  type: string;
+  userId: string;
+  billIds?: string[];
+  creditApplied?: number;
+  userName:any;
+  billDueDate:any;
+  billDetails:any;
+  userDetails:any;
 }
 
 // Define the props for the component
 interface TablePaymentsProps {
-  paymentDocs: PaymentDoc[]
+  paymentDocs: PaymentDoc[];
 }
 
 const TablePayments: React.FC<TablePaymentsProps> = ({ paymentDocs }) => {
-  console.log('Payment Data:', paymentDocs)
+  console.log('Payment Data:', paymentDocs);
 
   return (
-    <div className='rounded-[10px] bg-white px-7.5 pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card'>
+    <div className='rounded-[10px] bg-white px-4  pb-4 pt-7.5 shadow-1 dark:bg-gray-dark dark:shadow-card'>
       <h4 className='mb-10 font-bold text-body-2xlg text-dark dark:text-white'>
         Payment History
       </h4>
@@ -258,7 +400,7 @@ const TablePayments: React.FC<TablePaymentsProps> = ({ paymentDocs }) => {
       {paymentDocs.length > 0 ? (
         <div className='flex flex-col'>
           {/* Table Headers */}
-          <div className='grid grid-cols-6 text-button-gpt'>
+          <div className='grid grid-cols-8 text-button-gpt'>
             <div className='px-2 pb-3.5 text-center'>
               <h5 className='text-sm font-medium uppercase xsm:text-base'>
                 Date
@@ -276,6 +418,11 @@ const TablePayments: React.FC<TablePaymentsProps> = ({ paymentDocs }) => {
             </div>
             <div className='px-2 pb-3.5 text-center'>
               <h5 className='text-sm font-medium uppercase xsm:text-base'>
+                Credit Applied
+              </h5>
+            </div>
+            <div className='px-2 pb-3.5 text-center'>
+              <h5 className='text-sm font-medium uppercase xsm:text-base'>
                 Type
               </h5>
             </div>
@@ -286,7 +433,12 @@ const TablePayments: React.FC<TablePaymentsProps> = ({ paymentDocs }) => {
             </div>
             <div className='px-2 pb-3.5 text-center'>
               <h5 className='text-sm font-medium uppercase xsm:text-base'>
-                User ID
+                User
+              </h5>
+            </div>
+            <div className='px-2 pb-3.5 text-center'>
+              <h5 className='text-sm font-medium uppercase xsm:text-base'>
+                Bill
               </h5>
             </div>
           </div>
@@ -294,7 +446,7 @@ const TablePayments: React.FC<TablePaymentsProps> = ({ paymentDocs }) => {
           {/* Table Rows */}
           {paymentDocs.map((payment, key) => (
             <div
-              className={`grid grid-cols-6 ${
+              className={`grid grid-cols-8 ${
                 key === paymentDocs.length - 1
                   ? ''
                   : 'border-b border-stroke dark:border-dark-3'
@@ -310,21 +462,27 @@ const TablePayments: React.FC<TablePaymentsProps> = ({ paymentDocs }) => {
               {/* Amount */}
               <div className='flex items-center justify-center px-2 py-4'>
                 <p className='font-medium text-dark dark:text-white'>
-                  ${payment.amount.toFixed(2)}
+                  ${payment?.amount || ''}
                 </p>
               </div>
               {/* Savings */}
               <div className='flex items-center justify-center px-2 py-4'>
                 <p className='font-medium text-dark dark:text-white'>
-                  {isNaN(payment.savings)
-                    ? 'N/A'
-                    : `$${payment.savings.toFixed(2)}`}
+                 
+                  
+                    {truncateString(`$${payment?.savings}`,5)}
+                </p>
+              </div>
+              {/* Credit Applied */}
+              <div className='flex items-center justify-center px-2 py-4'>
+                <p className='font-medium text-dark dark:text-white'>
+                  {payment.creditApplied ?? 'N/A'}
                 </p>
               </div>
               {/* Type */}
               <div className='flex items-center justify-center px-2 py-4'>
                 <p className='font-medium text-dark dark:text-white'>
-                  {payment.type}
+                  {payment?.type}
                 </p>
               </div>
               {/* Status */}
@@ -336,14 +494,29 @@ const TablePayments: React.FC<TablePaymentsProps> = ({ paymentDocs }) => {
                       : 'text-yellow-500'
                   }`}
                 >
-                  {payment.status}
+                  {payment?.status}
                 </p>
               </div>
               {/* User ID */}
               <div className='flex items-center justify-center px-2 py-4'>
                 <p className='font-medium text-dark dark:text-white'>
-                  {truncateString(payment.userId, 15)}
+                  {truncateString(payment?.userName, 15)}
                 </p>
+              </div>
+              {/* Bill IDs */}
+              <div className='flex flex-col items-center justify-center px-2 py-4'>
+                {payment.billIds && payment.billIds.length > 0 ? (
+                  payment.billIds.map((id: string, index: number) => (
+                    <p
+                      key={index}
+                      className='font-medium text-dark dark:text-white'
+                    >
+                      {truncateString(payment?.billName, 15)}
+                    </p>
+                  ))
+                ) : (
+                  <p className='font-medium text-dark dark:text-white'>N/A</p>
+                )}
               </div>
             </div>
           ))}
@@ -354,12 +527,11 @@ const TablePayments: React.FC<TablePaymentsProps> = ({ paymentDocs }) => {
         </p>
       )}
     </div>
-  )
+  );
+};
+
+export default TablePayments;
+
+function truncateString(str: string, maxLength: number) {
+  return str.length > maxLength ? str.slice(0, maxLength) + '...' : str;
 }
-
-export default TablePayments
-
-function truncateString (str: string, maxLength: number) {
-  return str.length > maxLength ? str.slice(0, maxLength) + '...' : str
-}
-

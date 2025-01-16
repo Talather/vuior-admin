@@ -43,7 +43,7 @@ const BarChartCard = () => {
         }}
       >
         10,525
-        <span
+        {/* <span
           style={{
             fontSize: "16px",
             marginLeft: "10px",
@@ -53,7 +53,7 @@ const BarChartCard = () => {
           }}
         >
           +15.2%
-        </span>
+        </span> */}
           </div>
           
 
@@ -74,7 +74,7 @@ const BarChartCard = () => {
         </ResponsiveContainer>
               </div>
 
-              <div className="text-md text-gray-5 mr-7 ml-6 mt-7"><p>Increase in Data by 500 patients in the last 7 days.</p></div>
+              <div className="text-md text-gray-5 mr-7 ml-6 mt-7"><p>Increase in Data by 500 transactions in the last 7 days.</p></div>
               </div>
     </div>
   );

@@ -133,8 +133,8 @@ const fetchPendingBillsWithUserDetails = async () => {
     console.log('faarig')
     // Query to fetch all unpaid bills
     const billsQuery = query(
-      collection(db, 'bills'),
-      where('status', '==', 'pending')
+      collection(db, 'paymentHistory'),
+      where('status', '==', 'Pending')
     )
 
     // Execute the query to fetch bills
@@ -144,17 +144,47 @@ const fetchPendingBillsWithUserDetails = async () => {
     const billsWithUserDetails = await Promise.all(
       billsSnapshot.docs.map(async billDoc => {
         const billData = billDoc.data()
-        const userId = billData.user_id // Extract user_id from the bill
+        const userId = billData.userId // Extract user_id from the bill
+
+
+
+
+
+         const timestamp = billData.date // Replace with your field name
+        billData.date = timestamp.toDate().toString()
+        billData.date=billData.date.split("GMT")[0].trim()
+        
+
+
 
         // Fetch user details using the user_id
         const userRef = doc(db, 'users', userId)
         const userSnapshot = await getDoc(userRef)
         const userDetails = userSnapshot.exists() ? userSnapshot.data() : null
 
+
+
+
+          const billRef = doc(db, 'bills', billData.billIds[0])
+        const billSnapshot = await getDoc(billRef)
+        const billDetails = billSnapshot.exists() ? billSnapshot.data() : null
+        
+
+
+        //  const timestampi = billDetails.due_date // Replace with your field name
+        // let dueDate = timestampi.toDate().toString()
+        // dueDate=dueDate.split("GMT")[0].trim()
+
         return {
           id: billDoc.id,
           ...billData,
-          userDetails // Attach user details to the bill
+          userDetails,
+           userName:`${userDetails.firstName} ${userDetails.lastName}`,
+           billDueDate:billDetails.dueDate,
+           
+           // Attach user details to the bill
+           billName:billDetails.name,
+          billDetails
         }
       })
     )
@@ -167,7 +197,94 @@ const fetchPendingBillsWithUserDetails = async () => {
     //   totalRecords,
 
 
+console.log("bhrwa",billsWithUserDetails)
 
+    return billsWithUserDetails // Return the bills with user details
+
+  //  let pageSize=20
+  //   return { currentPage:1,
+  //     list:  billsWithUserDetails,
+  //     pageSize,
+  //     totalPages: Math.ceil(billsWithUserDetails.length / pageSize),
+  //    totalRecords: billsWithUserDetails.length}
+  } catch (error) {
+    console.error('Error fetching bills with user details:', error)
+    throw new Error('Error fetching bills with user details')
+  }
+}
+
+
+
+const fetchPaymentHistoryForAll = async () => {
+  try {
+    console.log('faarig')
+    // Query to fetch all unpaid bills
+    const billsQuery = query(
+      collection(db, 'paymentHistory'),
+      // where('status', '==', 'Pending')
+    )
+
+    // Execute the query to fetch bills
+    const billsSnapshot = await getDocs(billsQuery)
+
+    // Extract bill data and fetch user details for each bill
+    const billsWithUserDetails = await Promise.all(
+      billsSnapshot.docs.map(async billDoc => {
+        const billData = billDoc.data()
+        const userId = billData.userId // Extract user_id from the bill
+
+
+
+
+
+         const timestamp = billData.date // Replace with your field name
+        billData.date = timestamp.toDate().toString()
+        billData.date=billData.date.split("GMT")[0].trim()
+        
+
+
+
+        // Fetch user details using the user_id
+        const userRef = doc(db, 'users', userId)
+        const userSnapshot = await getDoc(userRef)
+        const userDetails = userSnapshot.exists() ? userSnapshot.data() : null
+
+
+
+
+          const billRef = doc(db, 'bills', billData.billIds[0])
+        const billSnapshot = await getDoc(billRef)
+        const billDetails = billSnapshot.exists() ? billSnapshot.data() : null
+        
+
+
+        //  const timestampi = billDetails.due_date // Replace with your field name
+        // let dueDate = timestampi.toDate().toString()
+        // dueDate=dueDate.split("GMT")[0].trim()
+
+        return {
+          id: billDoc.id,
+          ...billData,
+          userDetails,
+           userName:`${userDetails.firstName} ${userDetails.lastName}`,
+           billDueDate:billDetails.dueDate,
+           
+           // Attach user details to the bill
+           billName:billDetails.name,
+          billDetails
+        }
+      })
+       )
+
+
+    //  currentPage,
+    //   list: administrators,
+    //   pageSize,
+    //   totalPages: Math.ceil(totalRecords / pageSize),
+    //   totalRecords,
+
+
+console.log("bhrwa",billsWithUserDetails)
 
     return billsWithUserDetails // Return the bills with user details
 
@@ -189,5 +306,6 @@ export {
   fetchDocumentsForSpecificUser,
   fetchCreditHistoryForSpecificUser,
   fetchPaymentHistoryForSpecificUser,
-  fetchPendingBillsWithUserDetails
+  fetchPendingBillsWithUserDetails,
+  fetchPaymentHistoryForAll
 };

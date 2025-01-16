@@ -120,24 +120,41 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback,useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import ScrollLayout from '@/components/layout/scroll';
-import TableWrapperComponent from '@/components/table/wrapper';
+// import ScrollLayout from '@/components/layout/scroll';
+// import TableWrapperComponent from '@/components/table/wrapper';
 import { fetchPendingBillsWithUserDetails } from '@/lib/clientControllers/userSpecificAssets';
 
 // Function to convert all fields of an object to strings
-const convertFieldsToString = (obj) => {
-  return Object.fromEntries(
-    Object.entries(obj).map(([key, value]) => [key, String(value)])
-  );
-};
+
 
 const PaymentsHistory = () => {
   const { user } = useAuth();
   const [pendingBills, setPendingBills] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+
+
+
+  const convertFieldsToString = useCallback((obj) => {
+  if (typeof obj !== 'object' || obj === null) {
+    return String(obj); // Convert primitive values to string
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.map((item) => convertFieldsToString(item));
+  }
+
+  const result= {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      result[key] = convertFieldsToString(obj[key]); // Recursive conversion
+    }
+  }
+  return result;
+}, []);
 
   useEffect(() => {
     const fetchPendingBills = async () => {
@@ -150,6 +167,8 @@ const PaymentsHistory = () => {
         const bills = await fetchPendingBillsWithUserDetails();
         // Ensure all fields are strings
         const convertedBills = bills.map(convertFieldsToString);
+        console.log("chomo2",convertedBills)
+        
         setPendingBills(convertedBills);
       } catch (err) {
         console.error('Error fetching pending bills:', err);
@@ -182,16 +201,20 @@ const PaymentsHistory = () => {
                   <th className="px-4 py-4 text-left text-white">Amount</th>
                   <th className="px-4 py-4 text-left text-white">Due Date</th>
                   <th className="px-4 py-4 text-left text-white">Status</th>
+
+                  <th className="px-4 py-4 text-left text-white">User</th>
+                  
                   <th className="rounded-tr-xl px-4 py-4 text-center text-white">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {pendingBills.map((bill) => (
                   <tr key={bill.user_id} className="hover:bg-gray-50">
-                    <td className="border px-4 py-2">{bill.name}</td>
+                    <td className="border px-4 py-2">{bill.billName}</td>
                     <td className="border px-4 py-2">{bill.amount}</td>
-                    <td className="border px-4 py-2">{bill.dueDate}</td>
+                    <td className="border px-4 py-2">{bill.billDueDate}</td>
                     <td className="border px-4 py-2 capitalize">{bill.status}</td>
+                     <td className="border px-4 py-2 capitalize">{bill.userName}</td>
                     <td className="border px-4 py-2 text-center">
                       <button
                         className="px-3 py-1 text-white bg-buttonGpt rounded hover:bg-green-600"

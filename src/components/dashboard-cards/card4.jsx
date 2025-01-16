@@ -22,14 +22,14 @@ const BarChartCard = () => {
         padding: "15px",
         color: "#333",
               width: "25vw",
-        height:"50vh",
+        height:"25vh",
         // maxWidth: "340px",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         fontFamily: "Arial, sans-serif",
       }}
     >
       {/* Title */}
-      <div style={{ marginBottom: "10px", fontSize: "20px", fontWeight: "bold" }}>
+      <div style={{  color:"#10a37f",marginBottom: "20px", fontSize: "27px", fontWeight: "bold" }}>
         Total Credits Distributed
       </div>
 
@@ -44,7 +44,7 @@ const BarChartCard = () => {
         }}
       >
         10,525
-        <span
+        {/* <span
           style={{
             fontSize: "16px",
             marginLeft: "10px",
@@ -54,14 +54,14 @@ const BarChartCard = () => {
           }}
         >
           +15.2%
-        </span>
+        </span> */}
           </div>
           
 
 
 
           {/* Bar Chart */}
-          <div className="mt-5">
+          {/* <div className="mt-5">
           <div className="flex flex-row justify-around p-3 ">
              
               <CircularIconBox />
@@ -77,9 +77,9 @@ const BarChartCard = () => {
 
 
 
-          </div>
+          </div> */}
           {/* <hr  className=''width="95%" size={10}> */}
-          <hr class="border-t border-gray-300 my-1"></hr>
+          {/* <hr class="border-t border-gray-300 my-1"></hr>
 
           <div className="flex flex-row justify-around  p-4">
               <CircularIconBox />
@@ -91,8 +91,13 @@ const BarChartCard = () => {
 
 
 
-          </div></div>
-    </div>
+        </div> */}
+      
+      
+      
+      
+      </div>
+    // </div>
   );
 };
 

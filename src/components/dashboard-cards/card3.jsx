@@ -13,7 +13,7 @@ const GreenCard = () => {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      <div style={{ marginBottom: "10px", fontSize: "18px", fontWeight: "bold" }}>
+      <div style={{ marginBottom: "35px", fontSize: "24px", fontWeight: "bold" }}>
        Total Savings Acheived
       </div>
       <div
@@ -25,7 +25,7 @@ const GreenCard = () => {
         }}
       >
         10,525
-        <span
+        {/* <span
           style={{
             fontSize: "16px",
             marginLeft: "10px",
@@ -35,11 +35,11 @@ const GreenCard = () => {
           }}
         >
           +15.2%
-        </span>
+        </span> */}
       </div>
-      <div style={{ marginTop: "10px", fontSize: "14px" }}>
+      {/* <div style={{ marginTop: "10px", fontSize: "14px" }}>
         Data obtained for the last 7 days from 5,567 visitors to 7,525 visitors.
-      </div>
+      </div> */}
       <div
         style={{
           height: "6px",
