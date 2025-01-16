@@ -235,7 +235,21 @@ import { fetchPaymentHistoryForAll } from '@/lib/clientControllers/userSpecificA
 import { ClipLoader } from 'react-spinners'; // For loading spinner
 
 interface PaymentDoc {
-  [key: string]: any; // Flexible interface to handle dynamic keys
+  id:any;
+
+  amount: number;
+  date: string; // Use string to handle formatted date directly
+  savings: number;
+  status: string;
+  type: string;
+  userId: string;
+  billIds?: string[];
+  creditApplied?: number;
+  userName:any;
+  billDueDate:any;
+  billDetails:any;
+  userDetails:any;
+  billName:any;
 }
 
 const PaymentsHistory = () => {
