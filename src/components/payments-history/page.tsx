@@ -296,7 +296,7 @@ const PaymentsHistory = () => {
     };
 
     fetchPaymentHistory();
-  }, [user,convertFieldsToString]);
+  }, [user]);
 
   return (
     <div className="mt-6">
