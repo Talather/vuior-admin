@@ -34,7 +34,7 @@ const Table: React.FC<TableProps> = ({ data, columns }) => {
                                 {columns.map((column) => (
                                     <td
                                         key={column.key}
-                                        className={`border-[#eee] px-4 py-4 dark:border-dark-3 ${index === data.length - 1 ? "border-b-0" : "border-b"
+                                        className={`border-[#eee] px-7 py-4 dark:border-dark-3 ${index === data.length - 1 ? "border-b-0" : "border-b"
                                             }`}
                                     >
                                         {column.render ? column.render(item) : item[column.key]}

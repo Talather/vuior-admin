@@ -507,14 +507,14 @@ const TablePayments: React.FC<TablePaymentsProps> = ({ paymentDocs }) => {
               {/* Bill IDs */}
               <div className='flex flex-col items-center justify-center px-2 py-4'>
                 {payment.billIds && payment.billIds.length > 0 ? (
-                  payment.billIds.map((id: string, index: number) => (
+                  // payment.billIds.map((id: string, index: number) => (
                     <p
-                      key={index}
+                      // key={index}
                       className='font-medium text-dark dark:text-white'
                     >
                       {truncateString(payment?.billName, 15)}
                     </p>
-                  ))
+                  // ))
                 ) : (
                   <p className='font-medium text-dark dark:text-white'>N/A</p>
                 )}
