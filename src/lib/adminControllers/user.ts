@@ -22,6 +22,16 @@ const deleteUserAccount = async (userId:any) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
 // export const deleteSchool = async (id) => {
 //   try {
 //     // const schoolsSnapshot = await db

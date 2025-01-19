@@ -15,9 +15,9 @@ interface TableProps {
 
 const Table: React.FC<TableProps> = ({ data, columns }) => {
     return (
-        <div className="rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5">
-            <div className="max-w-full overflow-x-auto">
-                <table className="w-full table-auto">
+        <div className="rounded-[10px] border border-stroke bg-white p-4 shadow-1 dark:border-dark-3 dark:bg-gray-dark dark:shadow-card sm:p-7.5 scrollbar-hide">
+            <div className="max-w-full overflow-x-auto scrollbar-hide">
+                <table className="w-full table-auto scrollbar-hide">
                     <thead>
                         <tr className="bg-[#F7F9FC] text-left dark:bg-dark-2">
                             {columns.map((column) => (
